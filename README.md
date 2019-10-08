@@ -108,13 +108,21 @@ WHERE customer_id = "SHIRE"
 
 > There is more information about the COUNT clause on [W3 Schools](https://www.w3schools.com/sql/sql_count_avg_sum.asp)
 
+SELECT count(o.customer_id), c.company_name 
+FROM orders o JOIN customers c ON o.customer_id = c.customer_id 
+GROUP BY c.company_name
 
 ### list customers names and the number of orders per customer. Sort the list by number of orders in descending order. _Save-a-lot Markets should be at the top with 31 orders followed by _Ernst Handle_ with 30 orders. Last should be _Centro comercial Moctezuma_ with 1 order.
 > This can be done by adding an ORDER BY clause to the previous answer
 
+SELECT count(o.customer_id),  c.company_name
+From orders o JOIN customers c ON o.customer_id = c.customer_id
+GROUP BY c.company_name
+ORDER BY count(o.customer_id) DESC
 
 ### list orders grouped by customer's city showing number of orders per city. Returns 69 Records with _Aachen_ showing 6 orders and _Albuquerque_ showing 18 orders.
 > This is very similar to the previous two queries, however, it focuses on the City rather than the CustomerName
+
 
 
 ## Data Normalization
@@ -128,6 +136,22 @@ Take the following data and normalize it into a 3NF database.  You can use the w
 | Jane        | Ellie    | Dog      | Tiger      | Cat        | Toby       | Turtle     | No          | Yes          |
 | Bob         | Joe      | Horse    |            |            |            |            | No          | No           |
 | Sam         | Ginger   | Dog      | Miss Kitty | Cat        | Bubble     | Fish       | Yes         | No           |
+
+| Person Id | Person Name | Fenced Yard | City  Dweller |
+|-----------|-------------|-------------|---------------|
+| 1         | Jane        | No          | Yes           |
+| 2         | Bob         | No          | No            |
+| 3         | Sam         | Yes         | No            |
+
+| Pet Id | Person Id | Pet Name   | Pet Type |
+|--------|-----------|------------|----------|
+| 1      | 1         | Ellie      | Dog      |
+| 2      | 2         | Joe        | Horse    |
+| 3      | 3         | Ginger     | Dog      |
+| 4      | 1         | Tiger      | Cat      |
+| 5      | 3         | Miss Kitty | Cat      |
+| 6      | 1         | Toby       | Turtle   |
+| 7      | 3         | Bubble     | Fish     |
 
 ---
 ## Stretch Goals
