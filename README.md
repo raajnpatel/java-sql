@@ -123,6 +123,9 @@ ORDER BY count(o.customer_id) DESC
 ### list orders grouped by customer's city showing number of orders per city. Returns 69 Records with _Aachen_ showing 6 orders and _Albuquerque_ showing 18 orders.
 > This is very similar to the previous two queries, however, it focuses on the City rather than the CustomerName
 
+SELECT count(o.ship_city), c.city
+FROM orders o JOIN customers c ON o.customer_id = c.customer_id
+GROUP BY c.city
 
 
 ## Data Normalization
